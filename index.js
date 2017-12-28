@@ -67,8 +67,16 @@ function Sentry(options) {
 
   // it automatically will detect if it's already installed
   if (options.install || options.patchGlobal)
-    this.raven.install();
-
+  {
+    if(_.isFunction(options.install))
+    {
+      this.raven.install(options.install);  
+    }
+    else
+    {
+      this.raven.install();
+    }
+  }
 
 };
 
